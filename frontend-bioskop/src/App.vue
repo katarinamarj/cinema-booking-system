@@ -18,6 +18,9 @@ const year = new Date().getFullYear()
               <RouterLink class="nav-link active" aria-current="page" to="/" exact-active-class="active">Pocetna</RouterLink>
             </li>
             <li class="nav-item">
+              <RouterLink class="nav-link" to="/cinema" exact-active-class="active">Bioskopi</RouterLink>
+            </li>
+            <li class="nav-item">
               <RouterLink class="nav-link" to="/about" exact-active-class="active">O nama</RouterLink>
             </li>
             <li class="nav-item">

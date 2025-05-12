@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ListView from '@/views/ListView.vue'
 import MovieView from '@/views/MovieView.vue'
+import CinemaView from '@/views/CinemaView.vue'
 
 
 const router = createRouter({
@@ -42,8 +43,13 @@ const router = createRouter({
     },
     {
       path: '/cinema',
-      redirect: '/home'
+      name: 'cinema',
+      component: CinemaView,
+      meta: {
+        title: 'Bioskopi'
+      }
     },
+    
     {
       path: '/:catchAll(.*)',
       redirect: '/'
