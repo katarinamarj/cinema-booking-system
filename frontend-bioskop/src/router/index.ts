@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '@/views/AboutView.vue'
 import ListView from '@/views/ListView.vue'
 import MovieView from '@/views/MovieView.vue'
-import CinemaView from '@/views/CinemaView.vue'
-import EditCinema from '@/views/EditCinema.vue'
-import NewCinema from '@/views/NewCinema.vue'
-
+import CinemaView from '@/views/cinema/CinemaView.vue'
+import NewCinema from '@/views/cinema/NewCinema.vue'
+import LoginView from '../views/user/LoginView.vue'
+import UserView from '../views/user/UserView.vue'
+import RegisterView from '../views/user/RegisterView.vue'
+import EditCinema from '../views/cinema/EditCinema.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,11 +21,27 @@ const router = createRouter({
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
+      path: '/login',
+      name: 'login',
+      component: LoginView,
       meta: {
-        title: 'About Page'
+        title: 'Prijava'
+      }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
+      meta: {
+        title: 'Registracija'
+      }
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: UserView,
+      meta: {
+        title: 'Korisnik'
       }
     },
     {
