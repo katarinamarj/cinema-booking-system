@@ -35,13 +35,17 @@ export class CinemaService {
             
     }
 
-    static async createCinema(model: Cinema){
-        await repo.save({
-            name: model.name,
-            location: model.location,
-            createdAt: new Date()
-        })
+    static async createCinema(model: Partial<Cinema>) {
+    if (!model.name || !model.location) {
+        throw new Error('INVALID_INPUT');
     }
+
+    await repo.save({
+        name: model.name,
+        location: model.location,
+        createdAt: new Date()
+    });
+}
 
     static async updateCinema(id: number, model: Cinema){
         const cinema = await this.getCinemaById(id)
