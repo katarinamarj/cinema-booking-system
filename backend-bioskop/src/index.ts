@@ -7,24 +7,19 @@ import { AppDataSource } from './db'
 import { CinemaRoute } from './routes/cinema.route'
 import { UserRoute } from './routes/user.route'
 import { UserService } from './services/user.service'
+import { BookmarkRoute } from './routes/bookmark.route'
 
 const app = express()
 app.use(cors())
 app.use(morgan('short'))
 app.use(express.json())
 
-app.get('/', (req: Request, res: Response) => {
-    res.json({
-        message: 'PSEP 2025'
-    })
-})
-
 //app routes
 app.use(UserService.validateToken)
 app.use('/api/user', UserRoute)
 app.use('/api/movie', MovieRoute)
 app.use('/api/cinema', CinemaRoute)
-
+app.use('/api/bookmark', BookmarkRoute)
 
 //404 not found
 app.get('{/*path}', function (req, res){

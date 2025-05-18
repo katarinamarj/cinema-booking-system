@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { User } from "./User";
+import type { MovieModel } from "../models/movie.model";
 
 @Index("fk_bookmark_user_idx", ["userId"], {})
 @Entity("bookmark", { schema: "psep" })
@@ -19,6 +20,8 @@ export class Bookmark {
 
   @Column("int", { name: "movie_id", unsigned: true })
   movieId: number;
+
+  movie: null | MovieModel
 
   @Column("datetime", {
     name: "created_at",
