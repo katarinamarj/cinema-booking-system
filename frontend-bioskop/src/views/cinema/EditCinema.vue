@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
+import { useLogout } from '@/hooks/logout.hook';
 import type { CinemaModel } from '@/models/cinema.model';
 import { CinemaService } from '@/services/cinema.service';
 import { formatDate } from '@/utils';
@@ -7,21 +9,26 @@ import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute()
 const router = useRouter()
+const logout = useLogout()
 const id = Number(route.params.id)
 const cinema = ref<CinemaModel>()
 
 CinemaService.getCinemaById(id)
     .then(rsp => cinema.value = rsp.data)
+    .catch((e) => logout())
 
 function save() {
     if (cinema.value == null) return
-    CinemaService.updateCinema(id, cinema.value).then(rsp => {
-        router.push('/cinema')
-    })
+    CinemaService.updateCinema(id, cinema.value)
+        .then(rsp => {
+            router.push('/cinema')
+        })
+        .catch((e) => logout())
 }
 </script>
 
 <template>
+    <Navigation />
     <div v-if="cinema">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

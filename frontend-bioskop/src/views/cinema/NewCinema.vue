@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
+import { useLogout } from '@/hooks/logout.hook';
 import { CinemaService } from '@/services/cinema.service';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
+const logout = useLogout()
 const cinema = ref({
     name: '',
     location: ''
@@ -15,14 +18,17 @@ function save() {
         alert('Polja ime i lokacija su obavezna!')
         return
     }
-    
-    CinemaService.createCinema(cinema.value).then(rsp => {
+
+    CinemaService.createCinema(cinema.value)
+    .then(rsp => {
         router.push('/cinema')
     })
+    .catch((e) => logout())
 }
 </script>
 
 <template>
+    <Navigation />
     <div v-if="cinema">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

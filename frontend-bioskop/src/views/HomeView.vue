@@ -6,6 +6,7 @@ import { ref } from 'vue';
 import type { ActorModel } from '@/models/actor.model';
 import type { GenreModel } from '@/models/genre.model';
 import type { SearchModel } from '@/models/search.model';
+import Navigation from '@/components/Navigation.vue';
 
 const actors = ref<ActorModel[]>()
 const genres = ref<GenreModel[]>()
@@ -35,6 +36,7 @@ loadMovies()
 </script>
 
 <template>
+    <Navigation/>
     <h1>Praktikum Sistemi E-Poslovanja</h1>
     <p>Odabran glumac: {{ search.actor }}, zanr {{ search.genre }}</p>
     <div class="row ">

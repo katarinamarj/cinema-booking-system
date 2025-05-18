@@ -1,25 +1,31 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
+import { useLogout } from '@/hooks/logout.hook';
 import type { CinemaModel } from '@/models/cinema.model';
 import { CinemaService } from '@/services/cinema.service';
 import { formatDate } from '@/utils';
 import { ref } from 'vue';
 
 const cinemas = ref<CinemaModel[]>()
+const logout = useLogout()
+
 CinemaService.getCinemas()
     .then(rsp => {
         cinemas.value = rsp.data
     })
-    .catch((e) => console.log('Idi na login'))
+    .catch((e) => logout())
 
 function deleteCinema(id: number) {
     CinemaService.deleteCinemaById(id)
         .then(rsp => {
             cinemas.value = cinemas.value?.filter(c => c.cinemaId !== id)
         })
+        .catch((e) => logout())
 }
 </script>
 
 <template>
+    <Navigation />
     <h1>Bioskopi</h1>
     <RouterLink to="/cinema/new" class="btn btn-primary">
         + Dodaj Bioskop

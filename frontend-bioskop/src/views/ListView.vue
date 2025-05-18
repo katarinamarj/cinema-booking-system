@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import type { MovieModel } from '@/models/movie.model';
 import axios from 'axios';
 import {ref} from 'vue';
@@ -12,10 +13,11 @@ axios.get('https://movie.pequla.com/api/movie')
 
 <template>
  
+ <Navigation/>
  <div v-if="movies">
     <ul>
         <li v-for="m of movies">
-        <RouterLink :to="`/movies/${m.shortUrl}`">
+        <RouterLink :to="`/movie/${m.shortUrl}`">
             {{ m.title }} (Reziser: {{ m.director.name }})
         </RouterLink>
         <p>Glumci</p>
