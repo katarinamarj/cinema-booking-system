@@ -7,6 +7,9 @@ import type { ActorModel } from '@/models/actor.model';
 import type { GenreModel } from '@/models/genre.model';
 import type { SearchModel } from '@/models/search.model';
 import Navigation from '@/components/Navigation.vue';
+import { useRouter } from 'vue-router';
+import { BookmarkService } from '@/services/bookmark.service';
+import { getRefreshToken } from '@/auth';
 
 const actors = ref<ActorModel[]>()
 const genres = ref<GenreModel[]>()
@@ -30,6 +33,14 @@ const movies = ref<MovieModel[]>()
 function loadMovies(){
     MovieService.getMovies(search.value)
     .then(rsp => movies.value = rsp.data)
+}
+
+const router = useRouter()
+function addBookmark(movie: MovieModel) {
+    if (!confirm(`Dodaj ${movie.title} u sačuvane?`)) return
+    BookmarkService.createBookmark(movie.movieId)
+        .then(rsp => router.push('/user'))
+        .catch(e => alert(e.message))
 }
 
 loadMovies()
@@ -68,9 +79,15 @@ loadMovies()
                 <p class="card-text">{{ m.shortDescription }}</p>
             </div>
             <div class="card-footer">
-                <RouterLink :to="`/movie/${m.shortUrl}`" class="btn btn-sm btn-outline-primary">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
-                </RouterLink>
+                <div class="btn-group">
+                    <RouterLink :to="`/movie/${m.shortUrl}`" class="btn btn-sm btn-outline-primary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Detalji
+                    </RouterLink>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" v-if="getRefreshToken()"
+                        @click="addBookmark(m)">
+                        <i class="fa-solid fa-bookmark"></i> Sačuvaj
+                    </button>
+                </div>
             </div>
         </div>
     </div>

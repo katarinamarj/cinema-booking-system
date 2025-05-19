@@ -69,8 +69,7 @@ function deleteBookmark(model: BookmarkModel) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="b of user.bookmarks">
-                        <th scope="row">{{ b.bookmarkId }}</th>
+                    <tr v-if="user.bookmarks.length > 0" v-for="b of user.bookmarks">                        <th scope="row">{{ b.bookmarkId }}</th>
                         <td>{{ b.movie.title }}</td>
                         <td>{{ b.movie.movieGenres[0].genre.name }}</td>
                         <td>{{ b.movie.director.name }}</td>
@@ -86,6 +85,9 @@ function deleteBookmark(model: BookmarkModel) {
                                 </button>
                             </div>
                         </td>
+                    </tr>
+                    <tr v-else>
+                        <td colspan="7">Nemate sačuvanih filmova</td>
                     </tr>
                 </tbody>
             </table>
