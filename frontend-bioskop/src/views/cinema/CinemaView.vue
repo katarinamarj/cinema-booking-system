@@ -49,6 +49,9 @@ function deleteCinema(id: number) {
                 <td>{{ formatDate(c.updatedAt ?? c.createdAt) }}</td>
                 <td>
                     <div class="btn-group">
+                        <RouterLink :to="`/cinema/${c.cinemaId}/hall`" class="btn btn-sm btn-primary" title="Sale">
+                            <i class="fa-solid fa-list"></i>
+                        </RouterLink>
                         <RouterLink :to="`/cinema/${c.cinemaId}`" class="btn btn-sm btn-success">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </RouterLink>

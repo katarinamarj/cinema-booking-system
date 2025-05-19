@@ -45,6 +45,10 @@ export async function useAxios(url: string, method: 'get' | 'post' | 'put' | 'de
             return response
         }
 
+        if (response.status === 500) {
+            throw new Error(response.data.message)
+        }
+
         throw new Error("Status code: " + response.status)
 
     } catch (error: any) {
