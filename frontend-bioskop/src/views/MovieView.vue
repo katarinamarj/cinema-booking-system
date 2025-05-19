@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import type { MovieModel } from '@/models/movie.model';
 import { MovieService } from '@/services/movie.service';
@@ -66,5 +67,5 @@ MovieService.getMovieByShortUrl(short)
             </div>
         </div>
     </div>
-    <div v-else>Film se ucitava ...</div>
+    <Loading v-else />
 </template>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import type { MovieModel } from '@/models/movie.model';
 import axios from 'axios';
@@ -33,6 +34,6 @@ axios.get('https://movie.pequla.com/api/movie')
     </ul>
     <pre>{{ movies }}</pre>
  </div>
- <div v-else>Podaci se ucitavaju</div>
+ <Loading v-else />
 
 </template>

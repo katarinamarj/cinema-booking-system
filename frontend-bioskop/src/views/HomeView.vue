@@ -10,6 +10,7 @@ import Navigation from '@/components/Navigation.vue';
 import { useRouter } from 'vue-router';
 import { BookmarkService } from '@/services/bookmark.service';
 import { getRefreshToken } from '@/auth';
+import Loading from '@/components/Loading.vue';
 
 const actors = ref<ActorModel[]>()
 const genres = ref<GenreModel[]>()
@@ -97,6 +98,7 @@ loadMovies()
     <div class="text-center" v-else>
         Podaci se učitavaju...
     </div>
+    <Loading v-else />
 </template>
 
 <style>

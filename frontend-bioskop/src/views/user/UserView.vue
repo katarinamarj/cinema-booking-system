@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { BookmarkModel } from '@/models/bookmark.model';
@@ -69,7 +70,8 @@ function deleteBookmark(model: BookmarkModel) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="user.bookmarks.length > 0" v-for="b of user.bookmarks">                        <th scope="row">{{ b.bookmarkId }}</th>
+                    <tr v-if="user.bookmarks.length > 0" v-for="b of user.bookmarks">                       
+                        <th scope="row">{{ b.bookmarkId }}</th>
                         <td>{{ b.movie.title }}</td>
                         <td>{{ b.movie.movieGenres[0].genre.name }}</td>
                         <td>{{ b.movie.director.name }}</td>
@@ -101,4 +103,5 @@ function deleteBookmark(model: BookmarkModel) {
             </ul>
         </div>
     </div>
+    <Loading v-else />
 </template>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { CinemaModel } from '@/models/cinema.model';
@@ -59,4 +60,5 @@ function deleteCinema(id: number) {
             </tr>
         </tbody>
     </table>
+    <Loading v-else />
 </template>
