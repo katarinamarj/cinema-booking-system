@@ -17,3 +17,9 @@ export async function defineRequest(res: Response, callback: Function){
         })
     }
 }
+
+export function dataExists(data: any) {
+    if (data == null)
+        throw new Error('NOT_FOUND')
+    return data
+}
