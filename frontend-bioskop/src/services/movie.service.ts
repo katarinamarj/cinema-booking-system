@@ -1,3 +1,4 @@
+import type { MovieModel } from "@/models/movie.model";
 import type { SearchModel } from "@/models/search.model";
 import axios from "axios";
 
@@ -20,7 +21,10 @@ export class MovieService {
     }
 
     static async getMovieByShortUrl(short: string){
-        return await client.get(`/movie/short/${short}`)
+       return await client.get<MovieModel>(`/movie/short/${short}`)    }
+
+    static async getMovieById(id: number) {
+        return await client.get<MovieModel>(`/movie/${id}`)
     }
 
     static async getActors(){

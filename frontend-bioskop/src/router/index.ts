@@ -11,6 +11,9 @@ import EditCinema from '../views/cinema/EditCinema.vue'
 import HallView from '@/views/hall/HallView.vue'
 import EditHall from '@/views/hall/EditHall.vue'
 import NewHall from '@/views/hall/NewHall.vue'
+import ProjectionView from '@/views/projection/ProjectionView.vue'
+import EditProjection from '@/views/projection/EditProjection.vue'
+import NewProjection from '@/views/projection/NewProjection.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -103,12 +106,36 @@ const router = createRouter({
         title: 'Dodaj Salu'
       }
     },
+     {
+      path: '/hall/:id/projection',
+      name: 'projection',
+      component: ProjectionView,
+      meta: {
+        title: 'Projekcije'
+      }
+    },
     {
       path: '/hall/:id',
       name: 'edit-hall',
       component: EditHall,
       meta: {
         title: 'Izmeni Salu'
+      }
+    },
+    {
+      path: '/projection/new',
+      name: 'new-projection',
+      component: NewProjection,
+      meta: {
+        title: 'Dodaj Projekciju'
+      }
+    },
+    {
+      path: '/projection/:id',
+      name: 'edit-projection',
+      component: EditProjection,
+      meta: {
+        title: 'Izmeni Projekciju'
       }
     },
     {
