@@ -76,7 +76,7 @@ export class UserService {
             },
             where: {
                 email: email,
-                deletedAt: IsNull()
+                deletedAt: IsNull(),
             }
         })
 
@@ -93,8 +93,7 @@ export class UserService {
         data.recommended = movies.data
 
         // Retrieve bookmarks
-        data.bookmarks = await BookmarkService.getBookmarksByUserId(data.userId)
-
+        data.bookmarks = await BookmarkService.getBookmarksByUserId(data.userId)      
         return data
     }
 
@@ -144,5 +143,19 @@ export class UserService {
         })
 
         return dataExists(data)
+    }
+
+    static async getUserIdByEmail(email: string) {
+        const user = await repo.findOne({
+            select: {
+                userId: true
+            },
+            where: {
+                email: email,
+                deletedAt: IsNull()
+            }
+        })
+
+        return dataExists(user).userId
     }
 }
