@@ -14,6 +14,8 @@ import NewHall from '@/views/hall/NewHall.vue'
 import ProjectionView from '@/views/projection/ProjectionView.vue'
 import EditProjection from '@/views/projection/EditProjection.vue'
 import NewProjection from '@/views/projection/NewProjection.vue'
+import NewReservation from '@/views/reservation/NewReservation.vue'
+import ReservationView from '@/views/reservation/ReservationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +50,22 @@ const router = createRouter({
       component: UserView,
       meta: {
         title: 'Korisnik'
+      }
+    },
+    {
+      path: '/reservation',
+      name: 'reservation',
+      component: ReservationView,
+      meta: {
+        title: 'Rezervacije'
+      }
+    },
+    {
+      path: '/movie/:link/reservation',
+      name: 'new-reservation',
+      component: NewReservation,
+      meta: {
+        title: 'Rezervacija'
       }
     },
     {

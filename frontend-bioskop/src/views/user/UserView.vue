@@ -82,6 +82,9 @@ function deleteBookmark(model: BookmarkModel) {
                                 <RouterLink :to="`/movie/${b.movieId}`" class="btn btn-sm btn-primary">
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </RouterLink>
+                                <RouterLink :to="`/movie/${b.movie.shortUrl}/reservation`" class="btn btn-sm btn-success">
+                                    <i class="fa-solid fa-ticket"></i>
+                                </RouterLink>
                                 <button type="button" class="btn btn-sm btn-danger" @click="deleteBookmark(b)">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>

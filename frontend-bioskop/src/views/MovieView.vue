@@ -50,6 +50,11 @@ MovieService.getMovieByShortUrl(short)
                         </tr>
                     </tbody>
                 </table>
+                <div class="mb-3">
+                    <RouterLink class="btn btn-primary" :to="`/movie/${short}/reservation`">
+                        <i class="fa-solid fa-ticket"></i> Rezerviši
+                    </RouterLink>
+                </div>
             </div>
         </div>
         <div class="row mt-3">
