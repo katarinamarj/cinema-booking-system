@@ -13,4 +13,9 @@ export class ReservationService {
     static async createReservation(model: any) {
         return await useAxios('/reservation', 'post', model)
     }
+
+    static async deleteReservation(id: number) {
+       return await useAxios(`/reservation/${id}`, 'delete');
+    }
+
 }

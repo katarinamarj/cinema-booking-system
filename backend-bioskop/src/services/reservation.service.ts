@@ -64,4 +64,22 @@ export class ReservationService {
             createdAt: new Date()
         })
     }
+
+    static async deleteReservation(email: string, reservationId: number) {
+        const userId = await UserService.getUserIdByEmail(email);
+
+        const reservation = await repo.findOneBy({
+            reservationId,
+            userId,
+            deletedAt: IsNull()
+        });
+
+        if (!reservation) {
+            throw new Error("Rezervacija nije pronađena ili nemate dozvolu za brisanje.");
+        }
+
+        reservation.deletedAt = new Date();
+        await repo.save(reservation);
+    }
+
 }

@@ -10,8 +10,18 @@ const reservations = ref<ReservationModel[]>()
 ReservationService.getReservations()
     .then(rsp => reservations.value = rsp.data)
 
-function deleteReservation(model: ReservationModel) {
+function deleteReservation(reservation: ReservationModel) {
+    const confirmed = confirm(`Da li ste sigurni da želite da obrišete rezervaciju za "${reservation.projection.movie.title}"?`);
+    if (!confirmed) return;
 
+    ReservationService.deleteReservation(reservation.reservationId)
+        .then(() => {
+            reservations.value = reservations.value?.filter(r => r.reservationId !== reservation.reservationId);
+        })
+        .catch(error => {
+            console.error("Greška prilikom brisanja:", error);
+            alert("Došlo je do greške prilikom brisanja rezervacije.");
+    });
 }
 </script>
 
@@ -55,9 +65,6 @@ function deleteReservation(model: ReservationModel) {
                 <td>{{ formatDate(r.updatedAt ?? r.createdAt) }}</td>
                 <td>
                     <div class="btn-group">
-                        <RouterLink :to="`/reservation/${r.reservationId}`" class="btn btn-sm btn-success">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </RouterLink>
                         <button type="button" class="btn btn-sm btn-danger" @click="deleteReservation(r)">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>

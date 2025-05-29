@@ -15,3 +15,9 @@ ReservationRoute.post('/', async (req: any, res) => {
         await ReservationService.createReservation(req.user.email, req.body)
     )
 })
+
+ReservationRoute.delete('/:id', async (req: any, res) => {
+    await defineRequest(res, async () =>
+        await ReservationService.deleteReservation(req.user.email, parseInt(req.params.id))
+    )
+})
